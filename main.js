@@ -9,6 +9,7 @@ while (gameState) {
     let inputMainMenu = input('Type "play" to play the game, "results" to show the scoreboard, and "exit" to quit: ');
     console.log();
     if (inputMainMenu === "play") {
+        // Generating randomWord from wordList and hiding it
         let wordList = ["python", "java", "swift", "javascript"];
         let randomWord = wordList[Math.floor(Math.random() * wordList.length)];
         let randomWordArray = randomWord.split("");
@@ -27,7 +28,8 @@ while (gameState) {
         while (attempts > 0) {
             console.log(hiddenRandomWord());
             let userInput = input("Input a letter: ");
-
+            
+            // input error checking
             if (userInput.length !== 1) {
                 console.log("Please, input a single letter.\n");
                 continue;
@@ -36,7 +38,8 @@ while (gameState) {
                 console.log("Please, enter a lowercase letter from the English alphabet.\n");
                 continue;
             }
-
+            
+            // checking whether userInput appears in the randomWord or not
             let matchFind = 0;
             for (let index = 0; index < randomWord.length; index++) {
                 if (guessedWords.includes(userInput)) {
@@ -54,7 +57,8 @@ while (gameState) {
             }
             console.log();
             guessedWords.push(userInput);
-
+            
+            // win/lose conditions
             if (hiddenRandomWord().includes("-") === false) {
                 console.log(`You guessed the word ${randomWord}!`);
                 console.log("You survived!\n");
